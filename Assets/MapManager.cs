@@ -58,6 +58,7 @@ public class MapManager : MonoBehaviour
                 GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
                 if (i == -1 || i == columns || j == -1 || j == rows)
                 {
+
                     GameObject outerFloor = Instantiate(toInstantiate, new Vector3(i, j, 0), Quaternion.identity) as GameObject;
                     outerFloor.transform.SetParent(mapHolder);
 
@@ -90,6 +91,12 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    void LayoutExit(GameObject gameObject)
+    {
+        Vector3 randPos = RandomPosition();
+        Instantiate(gameObject, randPos, Quaternion.identity);
+    }
+
     public void SetupScene(int level)
     {
         MapSetup();
@@ -98,6 +105,6 @@ public class MapManager : MonoBehaviour
         LayoutObjectAtRandom(itemTiles, itemCount.minimum, itemCount.maximum);
         int enemyCount = (int)Mathf.Log(level, 2f);
         LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
-        Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
+        LayoutExit(exit);
     }
 }
