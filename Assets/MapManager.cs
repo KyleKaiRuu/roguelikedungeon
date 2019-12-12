@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
+public class MapManager : MonoBehaviour
+{
+    [Serializable]
+    public class Count
+    {
+        public int minimum;
+        public int maximum;
+
+        public Count (int min, int max)
+        {
+            maximum = max;
+            minimum = min;
+        }
+    }
+
+    public int columns = 20;
+    public int rows = 20;
+    public Count wallCount = new Count(5, 9);
+    public Count itemCount = new Count(1, 5);
+
+    public GameObject exit;
+    public GameObject[] floorTiles;
+    public GameObject[] wallTiles;
+    public GameObject[] itemTiles;
+    public GameObject[] enemyTiles;
+    public GameObject[] outerWallTiles;
+
+    private Transform mapHolder;
+    private List<Vector3> gridPositions = new List<Vector3>();
+
+    void InitializeList()
+    {
+        gridPositions.Clear();
+
+        for (int i = 1; i < columns - 1; i++)
+        {
+            for (int j = 1; j < rows - 1; j++)
+            {
+                gridPositions.Add(new Vector3(i, j, 0f));
+            }
+        }
+    }
+
+    void MapSetup()
+    {
+        mapHolder = new GameObject("Map").transform;
+
+        for (int i = -1; i < columns + 1; i++)
+        {
+            for (int j = -1; j < rows + 1; j++)
+            {
+                GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
+                if (i == -1 || i == columns || j == -1 || j == rows)
+                {
+                    GameObject outerFloor = Instantiate(toInstantiate, new Vector3(i, j, 0), Quaternion.identity) as GameObject;
+                    outerFloor.transform.SetParent(mapHolder);
+
+                    toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
+                }
+
+                GameObject instance = Instantiate(toInstantiate, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
+
+                instance.transform.SetParent(mapHolder);
+            }
+        }
+    }
+
+    Vector3 RandomPosition()
+    {
+        int randIndex = Random.Range(0, gridPositions.Count);
+        Vector3 randPos = gridPositions[randIndex];
+        gridPositions.RemoveAt(randIndex);
+        return randPos;
+    }
+
+    void LayoutObjectAtRandom(GameObject[] tileArray, int min, int max)
+    {
+        int objectCount = Random.Range(min, max + 1);
+        for (int i = 0; i < objectCount; i++)
+        {
+            Vector3 randPos = RandomPosition();
+            GameObject tileChoice = tileArray[Random.Range(0, tileArray.Length)];
+            Instantiate(tileChoice, randPos, Quaternion.identity);
+        }
+    }
+
+    public void SetupScene(int level)
+    {
+        MapSetup();
+        InitializeList();
+        LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
+        LayoutObjectAtRandom(itemTiles, itemCount.minimum, itemCount.maximum);
+        int enemyCount = (int)Mathf.Log(level, 2f);
+        LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
+        Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
+    }
+}
