@@ -6,7 +6,7 @@ public class Manager : MonoBehaviour
 {
     public static Manager instance = null;
     MapManager mapScript;
-    int level = 1;
+    public int level = 1;
 
     private void Awake()
     {
