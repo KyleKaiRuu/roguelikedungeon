@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1769704f578f02543b3fa73787ba2467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
+  levelStartDelay: 2
+  turnDelay: 0.1
+  playersTurn: 1
+  enemyMoving: 0
 --- !u!114 &5489944905418936675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +76,7 @@ MonoBehaviour:
   - {fileID: 685434907605876196, guid: 86aff001c69e8be489af066fadd7880e, type: 3}
   - {fileID: 5976399360267521436, guid: 336b2f12444df90409425d4c4f59c5cb, type: 3}
   - {fileID: 4439614039340809518, guid: 9f0646be9ea4b60408604a3abecdc671, type: 3}
+  - {fileID: 1127503693078755226, guid: 62434f5f5af33fa4b8700342aa53fcc4, type: 3}
   itemTiles:
   - {fileID: 3912086534574447119, guid: 0b4283bfd2e69764b8ed3de23d9f397d, type: 3}
   - {fileID: 1356450837509679020, guid: 1fd57da96d6365340abe4ae2f7623580, type: 3}
@@ -88,3 +92,6 @@ MonoBehaviour:
   - {fileID: 6140441322104354062, guid: 774132577fe240e4092d4c0415b26e39, type: 3}
   outerWallTiles:
   - {fileID: 5976399360267521436, guid: 336b2f12444df90409425d4c4f59c5cb, type: 3}
+  player:
+  - {fileID: 6019714338297479641, guid: de8a5ab7f06450c4cae906dbb81ff64f, type: 3}
+  wallPositions: []

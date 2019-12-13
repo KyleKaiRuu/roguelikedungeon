@@ -30,9 +30,12 @@ public class MapManager : MonoBehaviour
     public GameObject[] itemTiles;
     public GameObject[] enemyTiles;
     public GameObject[] outerWallTiles;
+    public GameObject[] player;
 
     private Transform mapHolder;
     private List<Vector3> gridPositions = new List<Vector3>();
+
+    public List<Vector3> wallPositions = new List<Vector3>();
 
     void InitializeList()
     {
@@ -63,6 +66,10 @@ public class MapManager : MonoBehaviour
                     outerFloor.transform.SetParent(mapHolder);
 
                     toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
+                    if (toInstantiate.tag == "Wall")
+                    {
+                        wallPositions.Add(new Vector3(i, j, 0));
+                    }
                 }
 
                 GameObject instance = Instantiate(toInstantiate, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
@@ -87,6 +94,10 @@ public class MapManager : MonoBehaviour
         {
             Vector3 randPos = RandomPosition();
             GameObject tileChoice = tileArray[Random.Range(0, tileArray.Length)];
+            if (tileChoice.tag == "Wall")
+            {
+                wallPositions.Add(randPos);
+            }
             Instantiate(tileChoice, randPos, Quaternion.identity);
         }
     }
@@ -101,6 +112,7 @@ public class MapManager : MonoBehaviour
     {
         MapSetup();
         InitializeList();
+        LayoutObjectAtRandom(player, 1, 1);
         LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
         LayoutObjectAtRandom(itemTiles, itemCount.minimum, itemCount.maximum);
         int enemyCount = (int)Mathf.Log(level, 2f);
