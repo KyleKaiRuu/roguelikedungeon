@@ -22,8 +22,6 @@ public class Manager : MonoBehaviour
     [ReadOnlyField]
     public bool enemyMoving;
 
-    bool settingMap;
-
     private void Awake()
     {
         if (instance == null)
@@ -72,7 +70,6 @@ public class Manager : MonoBehaviour
     void HideLevelImage()
     {
         levelImage.SetActive(false);
-        settingMap = false;
     }
 
     public void GameOver()
