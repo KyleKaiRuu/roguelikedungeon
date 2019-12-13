@@ -57,7 +57,6 @@ public class Manager : MonoBehaviour
     void InitGame()
     {
         enemies.Clear();
-        settingMap = true;
         levelImage = GameObject.Find("LevelImage");
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
         levelText.text = "Floor: " + level;
