@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class PlayerMove : MonoBehaviour
     Vector3 tryVector;
     [ReadOnlyField]
     public MapManager mapManager;
+
+    public float restartDelay = 0.5f;
     private void Awake()
     {
         rgbd = GetComponent<Rigidbody2D>();
@@ -133,5 +136,15 @@ public class PlayerMove : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Invoke("Restart", restartDelay);
+    }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 }

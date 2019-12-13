@@ -40,7 +40,6 @@ public class MapManager : MonoBehaviour
     void InitializeList()
     {
         gridPositions.Clear();
-
         for (int i = 1; i < columns - 1; i++)
         {
             for (int j = 1; j < rows - 1; j++)
@@ -53,6 +52,7 @@ public class MapManager : MonoBehaviour
     void MapSetup()
     {
         mapHolder = new GameObject("Map").transform;
+        wallPositions.Clear();
 
         for (int i = -1; i < columns + 1; i++)
         {

@@ -16,7 +16,7 @@ public class Manager : MonoBehaviour
 
     Text levelText;
     GameObject levelImage;
-    int level = 1;
+    int level = 0;
 
     List<GameObject> enemies;
     [ReadOnlyField]
@@ -37,7 +37,6 @@ public class Manager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         enemies = new List<GameObject>();
         mapScript = GetComponent<MapManager>();
-        InitGame();
     }
 
     private void OnEnable()
@@ -47,6 +46,9 @@ public class Manager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        level++;
+
+        InitGame();
     }
 
     private void OnDisable()
