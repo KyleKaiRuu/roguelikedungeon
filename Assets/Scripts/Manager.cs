@@ -55,12 +55,6 @@ public class Manager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    //private void OnLevelWasLoaded(int level)
-    //{
-    //    level++;
-
-    //    InitGame();
-    //}
 
     void InitGame()
     {
@@ -90,23 +84,19 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
-        if (settingMap)
-        {
-            return;
-        }
+        //Move this into PlayerMove/EnemyMove then delete Update Function
         if (playersTurn || enemyMoving)
         {
             return;
         }
-        StartCoroutine(MoveEnemies());
-        //Move Enemies Coroutine
     }
 
     public void AddEnemyToList()
     {
+        //Add enemies to a list when they get instantiated, move to MapManager
         //enemies.Add();
     }
-
+    //Move into own script, leaving just in case I need something from it
     IEnumerator MoveEnemies()
     {
         enemyMoving = true;
