@@ -8,3 +8,4 @@
 * Dungeon Tileset 32 x 32 px: https://stealthix.itch.io/
 * Dungeon Starter set: https://piratepoots.itch.io/
 * Graveyard Tileset: https://angrysnail.itch.io/
+* Pixel Champions: https://chimericalbard.itch.io/
