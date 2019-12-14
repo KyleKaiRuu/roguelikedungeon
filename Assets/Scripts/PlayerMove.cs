@@ -39,66 +39,77 @@ public class PlayerMove : MonoBehaviour
                 mapManager = GameObject.Find("Manager(Clone)").GetComponent<MapManager>();
             }
         }
-        int horizon = 0;
-        int vert = 0;
+        if (mapManager.gameObject.GetComponent<Manager>().playersTurn || mapManager.enemies.Count == 0)
+        { 
+            int horizon = 0;
+            int vert = 0;
 
-        horizon = (int)(Input.GetAxisRaw("Horizontal"));
+            horizon = (int)(Input.GetAxisRaw("Horizontal"));
 
-        vert = (int)(Input.GetAxisRaw("Vertical"));
-        if (timer < delay)
-        {
-            timer += Time.deltaTime;
-        }
-        if (timer >= delay)
-        {
-            initialPos = gameObject.transform.position;
-            tryVector = new Vector3(0, 0, 0);
-            if (horizon != 0)
+            vert = (int)(Input.GetAxisRaw("Vertical"));
+            if (timer < delay)
             {
-                if (horizon == 1)
-                {
-
-                    tryVector = gameObject.transform.position + new Vector3(1, 0, 0);
-                    
-                }
-                else if (horizon == -1)
-                {
-                    tryVector = gameObject.transform.position + new Vector3(-1, 0, 0);
-                    //StartCoroutine(SmoothMovement(tryVector));
-                }
-                if (CheckMove("HorizonRight"))
-                {
-                    StartCoroutine(SmoothMovement(tryVector));
-                    timer = 0;
-                }
-                else
-                {
-                    Debug.Log("Can't go that way!");
-                    timer = 0;
-                }
+                timer += Time.deltaTime;
             }
 
-            if (vert != 0)
+            if (timer >= delay)
             {
-                if (vert == 1)
+                initialPos = gameObject.transform.position;
+                tryVector = new Vector3(0, 0, 0);
+                if (horizon != 0)
                 {
-                    tryVector = gameObject.transform.position + new Vector3(0, 1, 0);
-                    //StartCoroutine(SmoothMovement(tryVector));
+                    if (horizon == 1)
+                    {
+
+                        tryVector = gameObject.transform.position + new Vector3(1, 0, 0);
+
+                    }
+                    else if (horizon == -1)
+                    {
+                        tryVector = gameObject.transform.position + new Vector3(-1, 0, 0);
+                        //StartCoroutine(SmoothMovement(tryVector));
+                    }
+                    if (CheckMove())
+                    {
+                        StartCoroutine(SmoothMovement(tryVector));
+                        timer = 0;
+                        mapManager.gameObject.GetComponent<Manager>().playersTurn = false;
+
+                    }
+                    else
+                    {
+                        Debug.Log("Can't go that way!");
+                        timer = 0;
+
+                    }
                 }
-                else if (vert == -1)
+
+                if (vert != 0)
                 {
-                    tryVector = gameObject.transform.position + new Vector3(0, -1, 0);
-                    //StartCoroutine(SmoothMovement(tryVector));
-                }
-                if (CheckMove("HorizonRight"))
-                {
-                    StartCoroutine(SmoothMovement(tryVector));
-                    timer = 0;
-                }
-                else
-                {
-                    Debug.Log("Can't go that way!");
-                    timer = 0;
+                    if (vert == 1)
+                    {
+                        tryVector = gameObject.transform.position + new Vector3(0, 1, 0);
+                        //StartCoroutine(SmoothMovement(tryVector));
+                    }
+                    else if (vert == -1)
+                    {
+                        tryVector = gameObject.transform.position + new Vector3(0, -1, 0);
+                        //StartCoroutine(SmoothMovement(tryVector));
+                    }
+                    if (CheckMove())
+                    {
+                        StartCoroutine(SmoothMovement(tryVector));
+                        timer = 0;
+                        mapManager.gameObject.GetComponent<Manager>().playersTurn = false;
+
+                    }
+                    else
+                    {
+                        Debug.Log("Can't go that way!");
+                        timer = 0;
+                        mapManager.gameObject.GetComponent<Manager>().playersTurn = false;
+
+                    }
                 }
             }
         }
@@ -118,19 +129,19 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 8)
-        {
-            gameObject.transform.position = initialPos;
-        }
-    }
-
-    bool CheckMove(string direction)
+    bool CheckMove()
     {
         for (int i = 0; i < mapManager.wallPositions.Count; i++)
         {
-            if (mapManager.wallPositions[i] == tryVector)
+            if (mapManager.wallPositions[i] == tryVector )
+            {
+                return false;
+            }
+        }
+
+        for (int i = 0; i < mapManager.enemies.Count; i++)
+        {
+            if (mapManager.enemies[i].transform.position == tryVector)
             {
                 return false;
             }

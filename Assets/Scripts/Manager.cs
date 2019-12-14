@@ -80,11 +80,22 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
-        //Move this into PlayerMove/EnemyMove then delete Update Function
-        if (playersTurn || enemyMoving)
+        if (CheckEnemies())
         {
-            return;
+            playersTurn = true;
         }
+    }
+
+    bool CheckEnemies()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (!enemies[i].GetComponent<EnemyMove>().hasMoved)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void AddEnemyToList()

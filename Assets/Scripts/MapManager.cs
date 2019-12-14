@@ -33,9 +33,13 @@ public class MapManager : MonoBehaviour
     public GameObject[] player;
 
     private Transform mapHolder;
-    private List<Vector3> gridPositions = new List<Vector3>();
+    [ReadOnlyField]
+    public List<Vector3> gridPositions = new List<Vector3>();
 
+    [ReadOnlyField]
     public List<Vector3> wallPositions = new List<Vector3>();
+    [ReadOnlyField]
+    public List<GameObject> enemies = new List<GameObject>();
 
     void InitializeList()
     {
@@ -53,7 +57,7 @@ public class MapManager : MonoBehaviour
     {
         mapHolder = new GameObject("Map").transform;
         wallPositions.Clear();
-
+        enemies.Clear();
         for (int i = -1; i < columns + 1; i++)
         {
             for (int j = -1; j < rows + 1; j++)
@@ -70,6 +74,7 @@ public class MapManager : MonoBehaviour
                     {
                         wallPositions.Add(new Vector3(i, j, 0));
                     }
+
                 }
 
                 GameObject instance = Instantiate(toInstantiate, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
@@ -98,7 +103,13 @@ public class MapManager : MonoBehaviour
             {
                 wallPositions.Add(randPos);
             }
-            Instantiate(tileChoice, randPos, Quaternion.identity);
+
+            GameObject instance = Instantiate(tileChoice, randPos, Quaternion.identity);
+
+            if (instance.tag == "Enemy")
+            {
+                enemies.Add(instance);
+            }
         }
     }
 
