@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23916788cab6604fb4d695bfd0a2f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.5
+  delay: 0.25
   timer: 0
   moveTime: 0.1
   mapManager: {fileID: 0}

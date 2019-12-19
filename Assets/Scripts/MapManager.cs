@@ -105,7 +105,7 @@ public class MapManager : MonoBehaviour
             }
 
             GameObject instance = Instantiate(tileChoice, randPos, Quaternion.identity);
-
+            instance.name = instance.name + i;
             if (instance.tag == "Enemy")
             {
                 enemies.Add(instance);

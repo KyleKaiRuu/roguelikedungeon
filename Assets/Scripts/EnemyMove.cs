@@ -42,104 +42,106 @@ public class EnemyMove : MonoBehaviour
             }
         }
 
-        if (timer < delay)
+        if (!mapManager.gameObject.GetComponent<Manager>().playersTurn)
         {
-            timer += Time.deltaTime;
-        }
-
-        if (!mapManager.gameObject.GetComponent<Manager>().playersTurn && timer >= delay)
-        {
-            int horizon = 0;
-            int vert = 0;
-
-            int randChance = -1;
-
-            Vector3 playerPos = FindPlayer();
-
-            if (playerPos.x > gameObject.transform.position.x)
+            if (timer < delay)
             {
-                horizon = 1;
+                timer += Time.deltaTime;
             }
-            else if (playerPos.x < gameObject.transform.position.x)
+            if (timer >= delay)
             {
-                horizon = -1;
-            }
-            if (playerPos.y > gameObject.transform.position.y)
-            {
-                vert = 1;
-            }
-            else if (playerPos.y < gameObject.transform.position.y)
-            {
-                vert = -1;
-            }
+                int horizon = 0;
+                int vert = 0;
 
-            initialPos = gameObject.transform.position;
-            tryVector = new Vector3(0, 0, 0);
-            if (horizon != 0 && vert != 0)
-            {
-                randChance = Random.Range(0, 2);
+                int randChance = -1;
 
-            }
-            if (randChance == 0 || ((!(horizon != 0 && vert != 0)) && randChance == -1) && horizon != 0)
-            {
-                if (horizon == 1)
+                Vector3 playerPos = FindPlayer();
+
+                if (playerPos.x > gameObject.transform.position.x)
                 {
-                    tryVector = gameObject.transform.position + new Vector3(1, 0, 0);
+                    horizon = 1;
+                }
+                else if (playerPos.x < gameObject.transform.position.x)
+                {
+                    horizon = -1;
+                }
+                if (playerPos.y > gameObject.transform.position.y)
+                {
+                    vert = 1;
+                }
+                else if (playerPos.y < gameObject.transform.position.y)
+                {
+                    vert = -1;
                 }
 
-                else if (horizon == -1)
+                initialPos = gameObject.transform.position;
+                tryVector = new Vector3(0, 0, 0);
+                if (horizon != 0 && vert != 0)
                 {
-                    tryVector = gameObject.transform.position + new Vector3(-1, 0, 0);
-                }
+                    randChance = Random.Range(0, 2);
 
-                if (horizon != 0)
+                }
+                if (randChance == 0 || ((!(horizon != 0 && vert != 0)) && randChance == -1) && horizon != 0)
                 {
-                    if (CheckMove())
+                    if (horizon == 1)
                     {
-                        StartCoroutine(SmoothMovement(tryVector));
-
-                        timer = 0;
-
-                        hasMoved = true;
+                        tryVector = gameObject.transform.position + new Vector3(1, 0, 0);
                     }
 
-                    else
+                    else if (horizon == -1)
                     {
-                        timer = 0;
-
-                        hasMoved = true;
-                    }
-                }
-            }
-
-            else if (randChance == 1 || ((!(horizon != 0 && vert != 0)) && randChance == -1) && vert != 0)
-            {
-
-                if (vert == 1)
-                {
-                    tryVector = gameObject.transform.position + new Vector3(0, 1, 0);
-                }
-
-                else if (vert == -1)
-                {
-                    tryVector = gameObject.transform.position + new Vector3(0, -1, 0);
-                }
-                if (vert != 0)
-                {
-                    if (CheckMove())
-                    {
-                        StartCoroutine(SmoothMovement(tryVector));
-
-                        timer = 0;
-
-                        hasMoved = true;
+                        tryVector = gameObject.transform.position + new Vector3(-1, 0, 0);
                     }
 
-                    else
+                    if (horizon != 0)
                     {
-                        timer = 0;
+                        if (CheckMove())
+                        {
+                            StartCoroutine(SmoothMovement(tryVector));
 
-                        hasMoved = true;
+                            timer = 0;
+
+                            hasMoved = true;
+                        }
+
+                        else
+                        {
+                            timer = 0;
+
+                            hasMoved = true;
+                        }
+                    }
+                }
+
+                else if (randChance == 1 || ((!(horizon != 0 && vert != 0)) && randChance == -1) && vert != 0)
+                {
+
+                    if (vert == 1)
+                    {
+                        tryVector = gameObject.transform.position + new Vector3(0, 1, 0);
+                    }
+
+                    else if (vert == -1)
+                    {
+                        tryVector = gameObject.transform.position + new Vector3(0, -1, 0);
+                    }
+                    if (vert != 0)
+                    {
+                        if (CheckMove())
+                        {
+                            StartCoroutine(SmoothMovement(tryVector));
+
+                            timer = 0;
+
+                            hasMoved = true;
+                        }
+
+                        else
+                        {
+                            timer = 0;
+
+                            hasMoved = true;
+                        }
                     }
                 }
             }

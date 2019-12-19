@@ -19,9 +19,9 @@ public class EnemyHealth : MonoBehaviour
         if (health <= 0)
         {
             mapManager.enemies.Remove(gameObject);
-
+            //player.GetComponent<PlayerMove>().nearbyEnemies.Remove(player.GetComponent<PlayerMove>().nearbyEnemies.Find((o => o == gameObject)));
             player.GetComponent<PlayerMove>().nearbyEnemies.Remove(gameObject);
-            player.GetComponent<PlayerMove>().enemiesDirections.Remove(gameObject.transform.position);
+            player.GetComponent<PlayerMove>().enemiesDirections.Remove(gameObject.transform.position - player.transform.position);
             Destroy(gameObject);
         }
     }

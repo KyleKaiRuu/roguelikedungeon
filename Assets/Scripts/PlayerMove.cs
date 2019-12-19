@@ -152,8 +152,10 @@ public class PlayerMove : MonoBehaviour
                     {
                         for (int i = 0; i < enemiesDirections.Count; i++)
                         {
+                            Debug.Log(directionVector + " " + enemiesDirections[i]);
                             if (directionVector == enemiesDirections[i])
                             {
+                                Debug.Log(directionVector);
                                 nearbyEnemies[i].GetComponent<EnemyHealth>().health -= damage;
                                 timer = 0;
                                 foreach (GameObject enemy in mapManager.enemies)
@@ -173,6 +175,9 @@ public class PlayerMove : MonoBehaviour
     IEnumerator SmoothMovement(Vector3 end)
     {
         animator.SetInteger("Direction", direction);
+        nearbyEnemies.Clear();
+        enemiesDirections.Clear();
+        enemyNear = false;
 
         float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
@@ -240,27 +245,34 @@ public class PlayerMove : MonoBehaviour
 
     void CheckForEnemies()
     {
-        for (int i = 0; i < mapManager.enemies.Count; i++)
+        bool anyEnemyNear = false;
+        int i = 0;
+        foreach(GameObject enemy in mapManager.enemies)
         {
-            if (mapManager.enemies[i].transform.position == gameObject.transform.position + new Vector3(1, 0, 0) ||
-                mapManager.enemies[i].transform.position == gameObject.transform.position + new Vector3(-1, 0, 0) ||
-                mapManager.enemies[i].transform.position == gameObject.transform.position + new Vector3(0, 1, 0) ||
-                mapManager.enemies[i].transform.position == gameObject.transform.position + new Vector3(0, -1, 0))
+            
+            if (enemy.transform.position == gameObject.transform.position + new Vector3(1, 0, 0) ||
+                enemy.transform.position == gameObject.transform.position + new Vector3(-1, 0, 0) ||
+                enemy.transform.position == gameObject.transform.position + new Vector3(0, 1, 0) ||
+                enemy.transform.position == gameObject.transform.position + new Vector3(0, -1, 0))
             {
                 enemyNear = true;
+                anyEnemyNear = true;
                 if (nearbyEnemies.Find(o => o == mapManager.enemies[i]) == null)
                 {
                     nearbyEnemies.Add(mapManager.enemies[i]);
                     enemiesDirections.Add(GetDirectionOfEnemy(mapManager.enemies[i]));
                 }
-                break;
             }
+
             else
             {
-                enemyNear = false;
-                nearbyEnemies.Clear();
-                enemiesDirections.Clear();
+                if (!anyEnemyNear)
+                {
+                    enemyNear = false;
+                }
             }
+
+            i++;
         }
     }
 }
