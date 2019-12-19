@@ -4,40 +4,40 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 6277400204303988758
-    second: Glenys-the-Demonswordsman_0
+    second: Glenys-frontWalk0
   - first:
       213: 1845079490921222316
-    second: Glenys-the-Demonswordsman_1
+    second: Glenys-frontWalk1
   - first:
       213: -4326195066310594083
-    second: Glenys-the-Demonswordsman_2
+    second: Glenys-frontWalk2
   - first:
       213: -6983269923176571794
-    second: Glenys-the-Demonswordsman_3
+    second: Glenys-LeftWalk0
   - first:
       213: -2537261179964375430
-    second: Glenys-the-Demonswordsman_4
+    second: Glenys-LeftWalk1
   - first:
       213: 3305967896190011285
-    second: Glenys-the-Demonswordsman_5
+    second: Glenys-LeftWalk2
   - first:
       213: 5672116126820253639
-    second: Glenys-the-Demonswordsman_6
+    second: Glenys-RightWalk0
   - first:
       213: -6922333511212673762
-    second: Glenys-the-Demonswordsman_7
+    second: Glenys-RightWalk1
   - first:
       213: 1366903901382779577
-    second: Glenys-the-Demonswordsman_8
+    second: Glenys-RightWalk2
   - first:
       213: 64258527514564156
-    second: Glenys-the-Demonswordsman_9
+    second: Glenys-BackWalk0
   - first:
       213: -5838641728898759724
-    second: Glenys-the-Demonswordsman_10
+    second: Glenys-BackWalk1
   - first:
       213: -2728743074539592971
-    second: Glenys-the-Demonswordsman_11
+    second: Glenys-BackWalk2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -122,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_0
+      name: Glenys-frontWalk0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,7 +130,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -143,7 +143,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_1
+      name: Glenys-frontWalk1
       rect:
         serializedVersion: 2
         x: 72
@@ -151,7 +151,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -164,7 +164,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_2
+      name: Glenys-frontWalk2
       rect:
         serializedVersion: 2
         x: 144
@@ -172,7 +172,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -185,7 +185,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_3
+      name: Glenys-LeftWalk0
       rect:
         serializedVersion: 2
         x: 0
@@ -193,7 +193,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -206,7 +206,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_4
+      name: Glenys-LeftWalk1
       rect:
         serializedVersion: 2
         x: 72
@@ -214,7 +214,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -227,7 +227,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_5
+      name: Glenys-LeftWalk2
       rect:
         serializedVersion: 2
         x: 144
@@ -235,7 +235,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -248,7 +248,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_6
+      name: Glenys-RightWalk0
       rect:
         serializedVersion: 2
         x: 0
@@ -256,7 +256,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -269,7 +269,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_7
+      name: Glenys-RightWalk1
       rect:
         serializedVersion: 2
         x: 72
@@ -277,7 +277,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -290,7 +290,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_8
+      name: Glenys-RightWalk2
       rect:
         serializedVersion: 2
         x: 144
@@ -298,7 +298,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -311,7 +311,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_9
+      name: Glenys-BackWalk0
       rect:
         serializedVersion: 2
         x: 0
@@ -319,7 +319,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -332,7 +332,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_10
+      name: Glenys-BackWalk1
       rect:
         serializedVersion: 2
         x: 72
@@ -340,7 +340,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -353,7 +353,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glenys-the-Demonswordsman_11
+      name: Glenys-BackWalk2
       rect:
         serializedVersion: 2
         x: 144
@@ -361,7 +361,7 @@ TextureImporter:
         width: 72
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

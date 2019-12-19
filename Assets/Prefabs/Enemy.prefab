@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6140441322104354062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -99,6 +99,8 @@ MonoBehaviour:
   timer: 0
   moveTime: 0.1
   mapManager: {fileID: 0}
+  player: {fileID: 0}
+  hasMoved: 0
 --- !u!50 &-726795778127932841
 Rigidbody2D:
   serializedVersion: 4
