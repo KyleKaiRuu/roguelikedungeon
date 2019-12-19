@@ -74,32 +74,20 @@ public class EnemyMove : MonoBehaviour
             }
             if (randChance == 0 || ((!(horizon != 0 && vert != 0)) && randChance == -1) && horizon != 0)
             {
-                Debug.Log(horizon.ToString() + vert.ToString());
-
                 if (horizon == 1)
                 {
-
                     tryVector = gameObject.transform.position + new Vector3(1, 0, 0);
-
                 }
 
                 else if (horizon == -1)
                 {
                     tryVector = gameObject.transform.position + new Vector3(-1, 0, 0);
-
-                    //StartCoroutine(SmoothMovement(tryVector));
                 }
 
                 if (horizon != 0)
                 {
                     if (CheckMove())
                     {
-                        Debug.Log(tryVector);
-                        if (tryVector == new Vector3(0, 0, 0))
-                        {
-                            Debug.Log("Enemy Position: " + gameObject.transform.position + horizon.ToString());
-
-                        }
                         StartCoroutine(SmoothMovement(tryVector));
 
 
@@ -108,10 +96,6 @@ public class EnemyMove : MonoBehaviour
 
                     else
                     {
-                        Debug.Log(tryVector);
-
-                        Debug.Log("Enemy can't go that way!" + tryVector);
-
                         hasMoved = true;
                     }
                 }
@@ -119,24 +103,20 @@ public class EnemyMove : MonoBehaviour
 
             else if (randChance == 1 || ((!(horizon != 0 && vert != 0)) && randChance == -1) && vert != 0)
             {
-                Debug.Log(horizon.ToString() + vert.ToString());
 
                 if (vert == 1)
                 {
                     tryVector = gameObject.transform.position + new Vector3(0, 1, 0);
-                    //StartCoroutine(SmoothMovement(tryVector));
                 }
 
                 else if (vert == -1)
                 {
                     tryVector = gameObject.transform.position + new Vector3(0, -1, 0);
-                    //StartCoroutine(SmoothMovement(tryVector));
                 }
                 if (vert != 0)
                 {
                     if (CheckMove())
                     {
-                        Debug.Log(tryVector);
                         StartCoroutine(SmoothMovement(tryVector));
 
                         hasMoved = true;
@@ -144,10 +124,6 @@ public class EnemyMove : MonoBehaviour
 
                     else
                     {
-                        Debug.Log(tryVector);
-
-                        Debug.Log("Enemy Can't go that way!" + tryVector);
-
                         hasMoved = true;
                     }
                 }
@@ -157,7 +133,6 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator SmoothMovement(Vector3 end)
     {
-        Debug.Log("Enemy should have moved");
         float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
         while (sqrRemainingDistance > float.Epsilon)

@@ -97,29 +97,4 @@ public class Manager : MonoBehaviour
         }
         return true;
     }
-
-    public void AddEnemyToList()
-    {
-        //Add enemies to a list when they get instantiated, move to MapManager
-        //enemies.Add();
-    }
-    //Move into own script, leaving just in case I need something from it
-    IEnumerator MoveEnemies()
-    {
-        enemyMoving = true;
-        yield return new WaitForSeconds(turnDelay);
-        if (enemies.Count == 0)
-        {
-            yield return new WaitForSeconds(turnDelay);
-        }
-
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            //enemies[i].MoveEnemy();
-
-            //yield return new WaitForSeconds(enemies[i].moveTime);
-        }
-        playersTurn = true;
-        enemyMoving = false;
-    }
 }

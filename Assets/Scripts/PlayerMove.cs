@@ -27,16 +27,20 @@ public class PlayerMove : MonoBehaviour
 
     Animator animator;
 
-    bool enemyNear;
+    bool enemyNear = false;
 
     [ReadOnlyField]
     public List<GameObject> nearbyEnemies = new List<GameObject>();
     [ReadOnlyField]
     public List<Vector3> enemiesDirections = new List<Vector3>();
-
-    bool checkedForEnemy;
-
+    
+    [ReadOnlyField]
     public int direction = 0;
+
+    [ReadOnlyField]
+    public Vector3 directionVector = new Vector3(0, -1, 0);
+
+    public int damage = 10;
     private void Awake()
     {
         rgbd = GetComponent<Rigidbody2D>();
@@ -46,6 +50,8 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        
+
         if (mapManager == null)
         {
             if (GameObject.Find("Manager(Clone)").GetComponent<MapManager>() != null)
@@ -53,9 +59,11 @@ public class PlayerMove : MonoBehaviour
                 mapManager = GameObject.Find("Manager(Clone)").GetComponent<MapManager>();
             }
         }
+
+        CheckForEnemies();
+
         if (mapManager.gameObject.GetComponent<Manager>().playersTurn || mapManager.enemies.Count == 0)
         {
-            CheckForEnemies();
 
             int horizon = 0;
             int vert = 0;
@@ -78,11 +86,13 @@ public class PlayerMove : MonoBehaviour
                     {
                         tryVector = gameObject.transform.position + new Vector3(1, 0, 0);
                         direction = 2;
+                        directionVector = new Vector3(1, 0, 0);
                     }
                     else if (horizon == -1)
                     {
                         tryVector = gameObject.transform.position + new Vector3(-1, 0, 0);
                         direction = 1;
+                        directionVector = new Vector3(-1, 0, 0);
                     }
 
                     if (CheckMove())
@@ -95,7 +105,7 @@ public class PlayerMove : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Can't go that way!");
+                        animator.SetInteger("Direction", direction);
                         timer = 0;
                     }
                 }
@@ -106,11 +116,13 @@ public class PlayerMove : MonoBehaviour
                     {
                         tryVector = gameObject.transform.position + new Vector3(0, 1, 0);
                         direction = 3;
+                        directionVector = new Vector3(0, 1, 0);
                     }
                     else if (vert == -1)
                     {
                         tryVector = gameObject.transform.position + new Vector3(0, -1, 0);
                         direction = 0;
+                        directionVector = new Vector3(0, -1, 0);
                     }
 
                     if (CheckMove())
@@ -122,9 +134,24 @@ public class PlayerMove : MonoBehaviour
                     }
                     else
                     {
-
-                        Debug.Log("Can't go that way!");
+                        animator.SetInteger("Direction", direction);
                         timer = 0;
+                    }
+                }
+
+                if (enemyNear)
+                {
+                    if (Input.GetAxis("Fire1") != 0)
+                    {
+                        for (int i = 0; i < enemiesDirections.Count; i++)
+                        {
+                            if (directionVector == enemiesDirections[i])
+                            {
+                                nearbyEnemies[i].GetComponent<EnemyHealth>().health -= damage;
+                                timer = 0;
+                                mapManager.gameObject.GetComponent<Manager>().playersTurn = false;
+                            }
+                        }
                     }
                 }
             }

@@ -149,6 +149,11 @@ MonoBehaviour:
   moveTime: 0.1
   mapManager: {fileID: 0}
   restartDelay: 0.5
+  nearbyEnemies: []
+  enemiesDirections: []
+  direction: 0
+  directionVector: {x: 0, y: -1, z: 0}
+  damage: 50
 --- !u!95 &9147265418645665436
 Animator:
   serializedVersion: 3
