@@ -42,6 +42,13 @@ public class PlayerMove : MonoBehaviour
     public Vector3 directionVector = new Vector3(0, -1, 0);
 
     public int damage = 10;
+
+    const int frontAni = 0;
+    const int leftAni = 1;
+    const int rightAni = 2;
+    const int backAni = 3;
+
+    int currentAni = frontAni;
     private void Awake()
     {
         rgbd = GetComponent<Rigidbody2D>();
@@ -86,13 +93,13 @@ public class PlayerMove : MonoBehaviour
                     if (horizon == 1)
                     {
                         tryVector = gameObject.transform.position + new Vector3(1, 0, 0);
-                        direction = 2;
+                        direction = rightAni;
                         directionVector = new Vector3(1, 0, 0);
                     }
                     else if (horizon == -1)
                     {
                         tryVector = gameObject.transform.position + new Vector3(-1, 0, 0);
-                        direction = 1;
+                        direction = leftAni;
                         directionVector = new Vector3(-1, 0, 0);
                     }
 
@@ -109,7 +116,7 @@ public class PlayerMove : MonoBehaviour
                     }
                     else
                     {
-                        animator.SetInteger("Direction", direction);
+                        changeAnimationState(direction);
                         timer = 0;
                     }
                 }
@@ -119,13 +126,13 @@ public class PlayerMove : MonoBehaviour
                     if (vert == 1)
                     {
                         tryVector = gameObject.transform.position + new Vector3(0, 1, 0);
-                        direction = 3;
+                        direction = backAni;
                         directionVector = new Vector3(0, 1, 0);
                     }
                     else if (vert == -1)
                     {
                         tryVector = gameObject.transform.position + new Vector3(0, -1, 0);
-                        direction = 0;
+                        direction = frontAni;
                         directionVector = new Vector3(0, -1, 0);
                     }
 
@@ -141,7 +148,8 @@ public class PlayerMove : MonoBehaviour
                     }
                     else
                     {
-                        animator.SetInteger("Direction", direction);
+                        changeAnimationState(direction);
+                        
                         timer = 0;
                     }
                 }
@@ -174,7 +182,8 @@ public class PlayerMove : MonoBehaviour
 
     IEnumerator SmoothMovement(Vector3 end)
     {
-        animator.SetInteger("Direction", direction);
+        changeAnimationState(direction);
+
         nearbyEnemies.Clear();
         enemiesDirections.Clear();
         enemyNear = false;
@@ -274,5 +283,11 @@ public class PlayerMove : MonoBehaviour
 
             i++;
         }
+    }
+
+    void changeAnimationState(int state)
+    {
+        animator.SetInteger("Direction", direction);
+        currentAni = direction;
     }
 }
