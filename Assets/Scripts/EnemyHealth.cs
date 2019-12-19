@@ -20,8 +20,8 @@ public class EnemyHealth : MonoBehaviour
         {
             mapManager.enemies.Remove(gameObject);
 
-            //player.GetComponent<PlayerMove>().nearbyEnemies.Remove(gameObject);
-            //player.GetComponent<PlayerMove>().enemiesDirections.Remove(gameObject.transform.position);
+            player.GetComponent<PlayerMove>().nearbyEnemies.Remove(gameObject);
+            player.GetComponent<PlayerMove>().enemiesDirections.Remove(gameObject.transform.position);
             Destroy(gameObject);
         }
     }

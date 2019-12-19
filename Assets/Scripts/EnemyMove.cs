@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    public float delay = 1.0f;
+    public float delay = 5.0f;
 
     [ReadOnlyField]
     public float timer = 0;
@@ -19,9 +19,11 @@ public class EnemyMove : MonoBehaviour
     [ReadOnlyField]
     public MapManager mapManager;
 
+    [ReadOnlyField]
     public GameObject player;
 
-    public bool hasMoved;
+    [ReadOnlyField]
+    public bool hasMoved = false;
 
     private void Awake()
     {
@@ -39,7 +41,13 @@ public class EnemyMove : MonoBehaviour
                 mapManager = GameObject.Find("Manager(Clone)").GetComponent<MapManager>();
             }
         }
-        if (!mapManager.gameObject.GetComponent<Manager>().playersTurn)
+
+        if (timer < delay)
+        {
+            timer += Time.deltaTime;
+        }
+
+        if (!mapManager.gameObject.GetComponent<Manager>().playersTurn && timer >= delay)
         {
             int horizon = 0;
             int vert = 0;
@@ -90,12 +98,15 @@ public class EnemyMove : MonoBehaviour
                     {
                         StartCoroutine(SmoothMovement(tryVector));
 
+                        timer = 0;
 
                         hasMoved = true;
                     }
 
                     else
                     {
+                        timer = 0;
+
                         hasMoved = true;
                     }
                 }
@@ -119,11 +130,15 @@ public class EnemyMove : MonoBehaviour
                     {
                         StartCoroutine(SmoothMovement(tryVector));
 
+                        timer = 0;
+
                         hasMoved = true;
                     }
 
                     else
                     {
+                        timer = 0;
+
                         hasMoved = true;
                     }
                 }
@@ -158,6 +173,14 @@ public class EnemyMove : MonoBehaviour
         if(player.transform.position == tryVector)
         {
             return false;
+        }
+
+        for (int i = 0; i < mapManager.enemies.Count; i++)
+        {
+            if (mapManager.enemies[i].transform.position == tryVector)
+            {
+                return false;
+            }
         }
 
         return true;

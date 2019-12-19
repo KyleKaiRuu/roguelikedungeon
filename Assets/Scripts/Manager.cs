@@ -88,9 +88,9 @@ public class Manager : MonoBehaviour
 
     bool CheckEnemies()
     {
-        for (int i = 0; i < enemies.Count; i++)
+        for (int i = 0; i < instance.GetComponent<MapManager>().enemies.Count; i++)
         {
-            if (!enemies[i].GetComponent<EnemyMove>().hasMoved)
+            if (!instance.GetComponent<MapManager>().enemies[i].GetComponent<EnemyMove>().hasMoved)
             {
                 return false;
             }

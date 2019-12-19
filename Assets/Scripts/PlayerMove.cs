@@ -27,7 +27,8 @@ public class PlayerMove : MonoBehaviour
 
     Animator animator;
 
-    bool enemyNear = false;
+    [ReadOnlyField]
+    public bool enemyNear = false;
 
     [ReadOnlyField]
     public List<GameObject> nearbyEnemies = new List<GameObject>();
@@ -99,7 +100,10 @@ public class PlayerMove : MonoBehaviour
                     {
                         StartCoroutine(SmoothMovement(tryVector));
                         timer = 0;
-
+                        foreach (GameObject enemy in mapManager.enemies)
+                        {
+                            enemy.GetComponent<EnemyMove>().hasMoved = false;
+                        }
                         mapManager.gameObject.GetComponent<Manager>().playersTurn = false;
 
                     }
@@ -129,7 +133,10 @@ public class PlayerMove : MonoBehaviour
                     {
                         StartCoroutine(SmoothMovement(tryVector));
                         timer = 0;
-
+                        foreach (GameObject enemy in mapManager.enemies)
+                        {
+                            enemy.GetComponent<EnemyMove>().hasMoved = false;
+                        }
                         mapManager.gameObject.GetComponent<Manager>().playersTurn = false;
                     }
                     else
@@ -149,7 +156,12 @@ public class PlayerMove : MonoBehaviour
                             {
                                 nearbyEnemies[i].GetComponent<EnemyHealth>().health -= damage;
                                 timer = 0;
+                                foreach (GameObject enemy in mapManager.enemies)
+                                {
+                                    enemy.GetComponent<EnemyMove>().hasMoved = false;
+                                }
                                 mapManager.gameObject.GetComponent<Manager>().playersTurn = false;
+                                
                             }
                         }
                     }
@@ -241,6 +253,7 @@ public class PlayerMove : MonoBehaviour
                     nearbyEnemies.Add(mapManager.enemies[i]);
                     enemiesDirections.Add(GetDirectionOfEnemy(mapManager.enemies[i]));
                 }
+                break;
             }
             else
             {
