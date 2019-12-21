@@ -38,6 +38,11 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+
+        }
         if (mapManager == null)
         {
             if (GameObject.Find("Manager(Clone)").GetComponent<MapManager>() != null)

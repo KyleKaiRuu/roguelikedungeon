@@ -222,6 +222,7 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        mapManager.gameObject.GetComponent<Manager>().playerHealthAtEndOfLevel = gameObject.GetComponent<PlayerHealth>().health;
         Invoke("Restart", restartDelay);
     }
 

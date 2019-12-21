@@ -50,6 +50,7 @@ MonoBehaviour:
   playersTurn: 1
   level: 0
   enemyMoving: 0
+  playerHealthAtEndOfLevel: 0
 --- !u!114 &5489944905418936675
 MonoBehaviour:
   m_ObjectHideFlags: 0

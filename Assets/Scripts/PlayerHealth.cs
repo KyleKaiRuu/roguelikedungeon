@@ -18,8 +18,8 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         manager = GameObject.Find("Manager(Clone)").GetComponent<Manager>();
-        
-        health = defaultHealth;
+
+        health = manager.playerHealthAtEndOfLevel;
     }
     private void Update()
     {
@@ -27,10 +27,7 @@ public class PlayerHealth : MonoBehaviour
         {
             gameOverCanvas = GameObject.Find("GameOverCanvas(Clone)").GetComponent<Canvas>();
         }
-        if (manager == null)
-        {
-            Debug.Log("NULLLLLLLLL");
-        }
+
         if (health <= 0)
         {
             gameOverCanvas.enabled = true;
@@ -39,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
 
             if (timer >= delay)
             {
+                manager.playerHealthAtEndOfLevel = defaultHealth;
                 manager.level = 0;
                 health = defaultHealth;
                 SceneManager.LoadScene(0);

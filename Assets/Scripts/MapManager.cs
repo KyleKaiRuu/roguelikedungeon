@@ -30,7 +30,7 @@ public class MapManager : MonoBehaviour
     public GameObject[] itemTiles;
     public GameObject[] enemyTiles;
     public GameObject[] outerWallTiles;
-
+    public GameObject[] player;
     private Transform mapHolder;
     [ReadOnlyField]
     public List<Vector3> gridPositions = new List<Vector3>();
@@ -128,6 +128,7 @@ public class MapManager : MonoBehaviour
         LayoutObjectAtRandom(itemTiles, itemCount.minimum, itemCount.maximum);
         int enemyCount = (int)Mathf.Log(level, 2f);
         LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
+        LayoutObjectAtRandom(player, 1, 1);
         LayoutExit(exit);
         Instantiate(gameOverCanvas);
     }

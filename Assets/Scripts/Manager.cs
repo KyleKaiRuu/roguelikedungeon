@@ -25,6 +25,9 @@ public class Manager : MonoBehaviour
     [ReadOnlyField]
     public bool enemyMoving;
 
+    [ReadOnlyField]
+    public int playerHealthAtEndOfLevel;
+
     private void Awake()
     {
         if (instance == null)
@@ -35,11 +38,8 @@ public class Manager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (playerInstance == null)
-        {
-            playerInstance = Instantiate(player);
-        }
-        DontDestroyOnLoad(playerInstance);
+        
+        playerHealthAtEndOfLevel = gameObject.GetComponent<MapManager>().player[0].gameObject.GetComponent<PlayerHealth>().defaultHealth;
         DontDestroyOnLoad(gameObject);
         enemies = new List<GameObject>();
         mapScript = GetComponent<MapManager>();
