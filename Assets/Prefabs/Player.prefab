@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6019714338297479647}
   - component: {fileID: 6019714338297479646}
   - component: {fileID: 9147265418645665436}
+  - component: {fileID: 7239525041418880345}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -149,11 +150,12 @@ MonoBehaviour:
   moveTime: 0.1
   mapManager: {fileID: 0}
   restartDelay: 0.5
+  enemyNear: 0
   nearbyEnemies: []
   enemiesDirections: []
   direction: 0
   directionVector: {x: 0, y: -1, z: 0}
-  damage: 50
+  damage: 10
 --- !u!95 &9147265418645665436
 Animator:
   serializedVersion: 3
@@ -173,3 +175,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7239525041418880345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6019714338297479641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a808c9f5f07784582ab6ba15eb9347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHealth: 50
+  health: 0
+  timer: 0
+  delay: 3
+  gameOverCanvas: {fileID: 0}

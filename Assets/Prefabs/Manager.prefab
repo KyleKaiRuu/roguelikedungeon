@@ -46,7 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelStartDelay: 2
   turnDelay: 0.1
+  player: {fileID: 6019714338297479641, guid: de8a5ab7f06450c4cae906dbb81ff64f, type: 3}
   playersTurn: 1
+  level: 0
   enemyMoving: 0
 --- !u!114 &5489944905418936675
 MonoBehaviour:
@@ -94,4 +96,8 @@ MonoBehaviour:
   - {fileID: 5976399360267521436, guid: 336b2f12444df90409425d4c4f59c5cb, type: 3}
   player:
   - {fileID: 6019714338297479641, guid: de8a5ab7f06450c4cae906dbb81ff64f, type: 3}
+  gridPositions: []
   wallPositions: []
+  enemies: []
+  gameOverCanvas: {fileID: 296789897436283080, guid: fb616f576a5661142a19f6d5357eb8a8,
+    type: 3}

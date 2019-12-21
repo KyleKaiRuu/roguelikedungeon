@@ -116,7 +116,7 @@ public class PlayerMove : MonoBehaviour
                     }
                     else
                     {
-                        changeAnimationState(direction);
+                        ChangeAnimationState(direction);
                         timer = 0;
                     }
                 }
@@ -148,7 +148,7 @@ public class PlayerMove : MonoBehaviour
                     }
                     else
                     {
-                        changeAnimationState(direction);
+                        ChangeAnimationState(direction);
                         
                         timer = 0;
                     }
@@ -182,7 +182,7 @@ public class PlayerMove : MonoBehaviour
 
     IEnumerator SmoothMovement(Vector3 end)
     {
-        changeAnimationState(direction);
+        ChangeAnimationState(direction);
 
         nearbyEnemies.Clear();
         enemiesDirections.Clear();
@@ -285,7 +285,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void changeAnimationState(int state)
+    void ChangeAnimationState(int state)
     {
         animator.SetInteger("Direction", direction);
         currentAni = direction;

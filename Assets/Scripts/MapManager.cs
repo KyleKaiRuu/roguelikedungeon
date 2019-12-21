@@ -30,7 +30,6 @@ public class MapManager : MonoBehaviour
     public GameObject[] itemTiles;
     public GameObject[] enemyTiles;
     public GameObject[] outerWallTiles;
-    public GameObject[] player;
 
     private Transform mapHolder;
     [ReadOnlyField]
@@ -40,6 +39,8 @@ public class MapManager : MonoBehaviour
     public List<Vector3> wallPositions = new List<Vector3>();
     [ReadOnlyField]
     public List<GameObject> enemies = new List<GameObject>();
+
+    public GameObject gameOverCanvas;
 
     void InitializeList()
     {
@@ -123,11 +124,11 @@ public class MapManager : MonoBehaviour
     {
         MapSetup();
         InitializeList();
-        LayoutObjectAtRandom(player, 1, 1);
         LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
         LayoutObjectAtRandom(itemTiles, itemCount.minimum, itemCount.maximum);
         int enemyCount = (int)Mathf.Log(level, 2f);
         LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
         LayoutExit(exit);
+        Instantiate(gameOverCanvas);
     }
 }

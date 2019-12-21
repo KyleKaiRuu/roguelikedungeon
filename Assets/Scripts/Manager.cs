@@ -9,6 +9,8 @@ public class Manager : MonoBehaviour
     public float levelStartDelay = 2.0f;
     public float turnDelay = 0.1f;
     public static Manager instance = null;
+    public GameObject player;
+    GameObject playerInstance;
     [ReadOnlyField]
     public bool playersTurn = true;
 
@@ -16,7 +18,8 @@ public class Manager : MonoBehaviour
 
     Text levelText;
     GameObject levelImage;
-    int level = 0;
+    [ReadOnlyField]
+    public int level = 0;
 
     List<GameObject> enemies;
     [ReadOnlyField]
@@ -32,6 +35,11 @@ public class Manager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (playerInstance == null)
+        {
+            playerInstance = Instantiate(player);
+        }
+        DontDestroyOnLoad(playerInstance);
         DontDestroyOnLoad(gameObject);
         enemies = new List<GameObject>();
         mapScript = GetComponent<MapManager>();

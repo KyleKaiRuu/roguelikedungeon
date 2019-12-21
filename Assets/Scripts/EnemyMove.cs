@@ -22,8 +22,12 @@ public class EnemyMove : MonoBehaviour
     [ReadOnlyField]
     public GameObject player;
 
+    Vector3 playerPos;
+
     [ReadOnlyField]
     public bool hasMoved = false;
+
+    bool playerNear;
 
     private void Awake()
     {
@@ -41,7 +45,7 @@ public class EnemyMove : MonoBehaviour
                 mapManager = GameObject.Find("Manager(Clone)").GetComponent<MapManager>();
             }
         }
-
+        CheckIfPlayerNear();
         if (!mapManager.gameObject.GetComponent<Manager>().playersTurn)
         {
             if (timer < delay)
@@ -55,7 +59,7 @@ public class EnemyMove : MonoBehaviour
 
                 int randChance = -1;
 
-                Vector3 playerPos = FindPlayer();
+                playerPos = FindPlayer();
 
                 if (playerPos.x > gameObject.transform.position.x)
                 {
@@ -107,7 +111,12 @@ public class EnemyMove : MonoBehaviour
                         else
                         {
                             timer = 0;
-
+                            //Attack here?
+                            if (playerNear)
+                            {
+                                player.GetComponent<PlayerHealth>().health -= 10;
+                                Debug.Log(player.GetComponent<PlayerHealth>().health);
+                            }
                             hasMoved = true;
                         }
                     }
@@ -139,7 +148,12 @@ public class EnemyMove : MonoBehaviour
                         else
                         {
                             timer = 0;
-
+                            //Attack here?
+                            if (playerNear)
+                            {
+                                player.GetComponent<PlayerHealth>().health -= 10;
+                                Debug.Log(player.GetComponent<PlayerHealth>().health);
+                            }
                             hasMoved = true;
                         }
                     }
@@ -190,8 +204,19 @@ public class EnemyMove : MonoBehaviour
 
     Vector3 FindPlayer()
     {
-        Vector3 playerPos = new Vector3(0,0,0);
-        playerPos = player.transform.position;
-        return playerPos;
+        Vector3 playerPosTemp = new Vector3(0,0,0);
+        playerPosTemp = player.transform.position;
+        return playerPosTemp;
+    }
+
+    void CheckIfPlayerNear()
+    {
+        if (playerPos == gameObject.transform.position + new Vector3(1, 0, 0)  ||
+            playerPos == gameObject.transform.position + new Vector3(-1, 0, 0) ||
+            playerPos == gameObject.transform.position + new Vector3(0, 1, 0)  ||
+            playerPos == gameObject.transform.position + new Vector3(0, -1, 0))
+        {
+            playerNear = true;
+        }
     }
 }
